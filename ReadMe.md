@@ -4,6 +4,12 @@
 
 ***You can Independently run scripts or run executables, its your preference. The executable operates independently of Python. I did this so users without python can use it too***
 
+***For the 3 Canvas Generators, you need to edit the HIDDEN MESSAGE inside the (.py) script only, an edit the TX id from the json file only to Encode the transaction ID and a message and hide them***
+
+*Example:
+    encoded_message = f"{transaction_id}|||Your Hidden Message Goes Here WE ARE THE NODE RUNNERS You Cant Bootleg Our Shit!!!"
+    steg_image = lsb.hide(image, encoded_message)*
+
 # Hidden_Encoder.exe
 ## Usage
 
