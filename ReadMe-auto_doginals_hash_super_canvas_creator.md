@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Doginals Hash Canvas Creator is a Python script that generates unique and visually appealing images images based on transaction hashes and saves them in the 'generated_images' directory. Each image is created dynamically, with cPython Imaging Library (PIL) to create a canvas filled with a variety of random shapes, colors, and patterns. The colors of these shapes, size, and positions are determined by the SHA-256 hash of the transaction, derived from a cryptographic hash function (e.g., SHA-256) to generate a unique hash or binary representation of specific hash transaction id's. The generated images are saved in the PNG format, with the encoded additional information added through steganography.
+The Doginals Hash Canvas Creator is a Python script that generates unique and visually appealing images images based on transaction hashes and saves them in the 'generated_images' directory. It pulls ids from the input you provide in (transaction_ids.json). Each image is created dynamically, with cPython Imaging Library (PIL) to create a canvas filled with a variety of random shapes, colors, and patterns. The colors of these shapes, size, and positions are determined by the SHA-256 hash of the transaction, derived from a cryptographic hash function (e.g., SHA-256) to generate a unique hash or binary representation of specific hash transaction id's. The generated images are saved in the PNG format, with the encoded additional information added through steganography.
 
 ## Prerequisites
 

@@ -1,0 +1,131 @@
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVBoxLayout, QLabel, QFileDialog, QMessageBox, QStyleFactory
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
+import sys
+import os
+import subprocess
+
+class YourApp(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("Node Runners Doginal Decoder")
+        self.setGeometry(100, 100, 800, 600)
+
+        # Set dark theme
+        self.setDarkTheme()
+
+        self.image_label = QLabel(self)
+        self.image_label.setGeometry(50, 50, 500, 500)
+
+        self.initUI()
+
+    def initUI(self):
+        self.setWindowTitle('Node Runners Doginal Decoder')
+
+        self.btnEncoder = QPushButton('Run Encoder', self)
+        self.btnDecoder = QPushButton('Run Decoder', self)
+        self.btnColorBlockGenerator = QPushButton('Color Block Generator', self)
+        self.btnHashMapGenerator = QPushButton('Hash-map Generator', self)
+        self.btnSuperCanvasGenerator = QPushButton('Super Canvas Generator', self)
+
+        self.btnEncoder.clicked.connect(self.runEncoder)
+        self.btnDecoder.clicked.connect(self.runDecoder)
+        self.btnColorBlockGenerator.clicked.connect(self.runColorBlockGenerator)
+        self.btnHashMapGenerator.clicked.connect(self.runHashMapGenerator)
+        self.btnSuperCanvasGenerator.clicked.connect(self.runSuperCanvasGenerator)
+
+        self.imageLabel = QLabel(self)
+        self.imageLabel.setFixedSize(400, 400)
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.btnEncoder)
+        layout.addWidget(self.btnDecoder)
+        layout.addWidget(self.btnColorBlockGenerator)
+        layout.addWidget(self.btnHashMapGenerator)
+        layout.addWidget(self.btnSuperCanvasGenerator)
+        layout.addWidget(self.imageLabel)
+
+        self.setLayout(layout)
+
+    def setDarkTheme(self):
+        # Set dark theme with gray background
+        self.setStyleSheet("QMainWindow {background: #303030; color: #E0E0E0} "
+                           "QPushButton {background-color: #484848; color: #E0E0E0; border: 1px solid #E0E0E0;}"
+                           "QPushButton:hover {background-color: #686868} "
+                           "QLabel {color: #E0E0E0} ")
+
+        # Set dark theme for file dialog
+        self.setStyleSheet(QStyleFactory.create('Fusion'))
+        palette = self.palette()
+        palette.setColor(palette.Window, Qt.darkGray)
+        palette.setColor(palette.WindowText, Qt.white)
+        palette.setColor(palette.Button, Qt.darkGray)
+        palette.setColor(palette.ButtonText, Qt.white)
+        palette.setColor(palette.Base, Qt.darkGray)
+        palette.setColor(palette.Highlight, Qt.white)
+        palette.setColor(palette.HighlightedText, Qt.darkGray)
+        self.setPalette(palette)
+
+    def runEncoder(self):
+        try:
+            subprocess.run([r'C:\DoginalsHashCanvasCreator\dist\Hidden_Encoder.exe'])
+        except Exception as e:
+            print(f"Error running encoder: {e}")
+
+    def runDecoder(self):
+        try:
+            result = subprocess.run([r'C:\DoginalsHashCanvasCreator\dist\Hidden_Extractor.exe'], capture_output=True, text=True)
+            extracted_message = result.stdout
+
+            msg = QMessageBox()
+            msg.setWindowTitle("Decoded Message")
+            msg.setText(f"Extracted Message:\n{extracted_message}")
+            msg.exec_()
+        except Exception as e:
+            print(f"Error running the Decoder: {e}")
+
+    def runColorBlockGenerator(self):
+        try:
+            subprocess.run([r'C:\DoginalsHashCanvasCreator\dist\auto_doginals_hash_canvas_creator.exe'])
+        except Exception as e:
+            print(f"Error running Color Block Generator: {e}")
+
+        image_path = r"C:\DoginalsHashCanvasCreator\generated_images\generated_image_steg.png"
+        pixmap = QPixmap(image_path)
+        self.image_label.setPixmap(pixmap)
+
+    def runHashMapGenerator(self):
+        try:
+            subprocess.run([r'C:\DoginalsHashCanvasCreator\dist\hash_map_generator.exe'])
+        except Exception as e:
+            print(f"Error running Hash-map Generator: {e}")
+
+        image_path = r"C:\DoginalsHashCanvasCreator\hash-map_generated_images\generated_image_steg.png"
+        pixmap = QPixmap(image_path)
+        self.image_label.setPixmap(pixmap)
+
+    def runSuperCanvasGenerator(self):
+        try:
+            subprocess.run([r'C:\DoginalsHashCanvasCreator\dist\super_canvas_generator.exe'])
+        except Exception as e:
+            print(f"Error running Super Canvas Generator: {e}")
+
+        image_path = r"C:\DoginalsHashCanvasCreator\super-canvas_generated_images\generated_image_steg.png"
+        pixmap = QPixmap(image_path)
+        self.image_label.setPixmap(pixmap)
+
+    def saveImage(self):
+        save_path, _ = QFileDialog.getSaveFileName(self, "Save Image", "", "PNG Files (*.png);;All Files (*)")
+
+        if save_path:
+            # Specify the file to copy, not the directory
+            image_path = r"C:\DoginalsHashCanvasCreator\super-canvas_generated_images\generated_image_steg.png"
+            os.system(f'copy "{image_path}" "{save_path}"')
+            print(f"Image saved to {save_path}")
+
+if __name__ == "__main__":
+    app = QApplication([])
+    window = YourApp()
+    window.show()
+    sys.exit(app.exec_())

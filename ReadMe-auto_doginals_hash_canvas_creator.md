@@ -78,7 +78,7 @@ Run the script by executing the following command in the terminal:
 
 `python auto_doginals_hash_canvas_creator.py
 
-The script will create a unique image based on the provided transaction hash and save it in the 'generated_images' directory.
+The script will create a unique image based on the (transaction_ids.json) provided transaction hash and save it in the 'generated_images' directory.
 
 *The path to the generated image will be displayed in the terminal.*
 

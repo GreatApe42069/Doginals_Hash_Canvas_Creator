@@ -24,7 +24,8 @@ cd DoginalsHashCanvasCreator
 
 ## Prepare JSON File:
 
--Create a JSON file (encoded_messages.json) containing image paths and corresponding hidden messages. Ensure the paths are correctly formatted and double-check for any escaping issues.
+-Create a JSON file (((encoded_messages.json))) containing image paths and corresponding hidden messages which "YOU INPUT IN THIS json". Ensure the paths are correctly formatted and double-check for any escaping issues.
+***Enter file path and Hidden message inside the ((`encoded_messages.json`)) inside the Main folder not in dist folder , in the Main folder. Make sure to use double    \\  if you use  \  in file path input you will get, Error loading JSON file: Invalid \escape: line 3 column 26 (char 33)***
 
 ## Example:
 

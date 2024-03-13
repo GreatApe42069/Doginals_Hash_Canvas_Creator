@@ -21,12 +21,17 @@ You can install them using the following commands:
 -Clone the Repository:
 
 git clone https://github.com/GreatApe42069/Doginals_Hash_Canvas_Creator.git
-cd DoginalsHashCanvasCreator
+
+cd C:\DoginalsHashCanvasCreator
 
 
 -Run the script:
 
-Hidden_Extractor.py`
+cd C:\DoginalsHashCanvasCreator
+
+python Hidden_Extractor.py
+
+or Double click python file
 
 -Enter the steganographed image file path when prompted.
 
@@ -37,7 +42,7 @@ Enter the steganographed image file path:
  C:\DoginalsHashCanvasCreator\hash-map_generated_images\hashmap00006.png
 
 
--The script will now attempt to decode the hidden message and display the extracted transaction ID and phrase.
+-The script will now attempt to decode the hidden message and display the extracted transaction ID and phrase inside your command prompt window.
 
 Example:
 

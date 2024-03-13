@@ -65,7 +65,7 @@ This will generate an image based on a transaction hash and save it in the 'hash
 
 ## Implementation
 
-The script uses the Pillow library for image manipulation. It dynamically creates and saves images by randomly placing rectangles and ellipses on a white or black canvas depending on how you edit paremeters. The seed for the random number generator is derived from the transaction hash, ensuring reproducibility for a given hash, then it encodes tx id and hidden message within.
+The script uses the Pillow library for image manipulation. And the inputs go in (transaction_ids.json) It dynamically creates and saves images by randomly placing rectangles and ellipses on a white or black canvas depending on how you edit paremeters. The seed for the random number generator is derived from the transaction hash, ensuring reproducibility for a given hash, then it encodes tx id and hidden message within.
 
 ## Functions
 
