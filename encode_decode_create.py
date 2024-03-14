@@ -1,17 +1,16 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QLabel, QFileDialog, \
-    QLineEdit, QWidget, QMessageBox
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import Qt, QThread, pyqtSignal
-import sys
-import os
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QLabel, QLineEdit, QWidget, QMessageBox, QFileDialog
+from PyQt5.QtCore import QThread, pyqtSignal
 import subprocess
+import json
+import sys
 
 class SubprocessThread(QThread):
     finished = pyqtSignal()
 
-    def __init__(self, command):
+    def __init__(self, command, input_data=""):
         super().__init__()
         self.command = command
+        self.input_data = input_data
 
     def run(self):
         try:
@@ -23,24 +22,27 @@ class SubprocessThread(QThread):
         finally:
             self.finished.emit()
 
+class HiddenMessageWindow(QWidget):
+    def __init__(self, hidden_message):
+        super().__init__()
+        self.setWindowTitle('Hidden Message')
+        self.setGeometry(200, 200, 400, 200)
+
+        layout = QVBoxLayout()
+        self.message_label = QLabel(hidden_message, self)
+        layout.addWidget(self.message_label)
+
+        self.setLayout(layout)
+
 class YourApp(QMainWindow):
     def __init__(self):
         super().__init__()
 
         self.setWindowTitle('Node Runners Doginal Decoder')
-        self.setGeometry(100, 100, 800, 600)
+        self.setGeometry(100, 100, 800, 300)
 
         # Set dark theme
         self.setDarkTheme()
-
-        # Create image viewer
-        self.imageLabel = QLabel(self)
-        self.imageLabel.setFixedSize(400, 400)
-
-        # Input field for file name
-        self.inputFileName = QLineEdit(self)
-        self.inputFileName.setPlaceholderText("Enter file name")
-        self.inputFileName.setFixedWidth(200)
 
         # Initialize thread
         self.thread = None
@@ -64,13 +66,45 @@ class YourApp(QMainWindow):
 
         # Create layout
         layout = QVBoxLayout()
-        layout.addWidget(self.btnEncoder)
         layout.addWidget(self.btnDecoder)
-        layout.addWidget(self.inputFileName)  # Add input field to layout
+
+        # Input field for image path for decoder
+        self.inputImagePathDecoder = QLineEdit(self)
+        self.inputImagePathDecoder.setPlaceholderText("Enter image path for decoder")
+        self.inputImagePathDecoder.setFixedWidth(800)
+        layout.addWidget(self.inputImagePathDecoder)
+
+        layout.addWidget(self.btnEncoder)
+
+        # Input field for image path for encoder
+        self.inputImagePathEncoder = QLineEdit(self)
+        self.inputImagePathEncoder.setPlaceholderText("Enter image path for encoder")
+        self.inputImagePathEncoder.setFixedWidth(800)
+        layout.addWidget(self.inputImagePathEncoder)
+
         layout.addWidget(self.btnColorBlockGenerator)
+
+        # Input field for transaction IDs for Color Block Generator
+        self.inputTransactionIDsColorBlock = QLineEdit(self)
+        self.inputTransactionIDsColorBlock.setPlaceholderText("Enter transaction IDs for Color Block Generator")
+        self.inputTransactionIDsColorBlock.setFixedWidth(800)
+        layout.addWidget(self.inputTransactionIDsColorBlock)
+
         layout.addWidget(self.btnHashMapGenerator)
+
+        # Input field for transaction IDs for Hash-map Generator
+        self.inputTransactionIDsHashMap = QLineEdit(self)
+        self.inputTransactionIDsHashMap.setPlaceholderText("Enter transaction IDs for Hash-map Generator")
+        self.inputTransactionIDsHashMap.setFixedWidth(800)
+        layout.addWidget(self.inputTransactionIDsHashMap)
+
         layout.addWidget(self.btnSuperCanvasGenerator)
-        layout.addWidget(self.imageLabel)
+
+        # Input field for transaction IDs for Super Canvas Generator
+        self.inputTransactionIDsSuperCanvas = QLineEdit(self)
+        self.inputTransactionIDsSuperCanvas.setPlaceholderText("Enter transaction IDs for Super Canvas Generator")
+        self.inputTransactionIDsSuperCanvas.setFixedWidth(800)
+        layout.addWidget(self.inputTransactionIDsSuperCanvas)
 
         # Set the layout for the central widget
         central_widget = QWidget()
@@ -78,13 +112,18 @@ class YourApp(QMainWindow):
         self.setCentralWidget(central_widget)
 
     def setDarkTheme(self):
-        # Set dark theme with gray background
+        # Set dark theme with black background
         style = """
-            QMainWindow {background: #303030; color: #E0E0E0}
+            QMainWindow {background-color: #000000; color: #000000}
             QPushButton {background-color: #484848; color: #E0E0E0; border: 1px solid #E0E0E0;}
             QPushButton:hover {background-color: #686868}
             QLabel {color: #E0E0E0}
             QLineEdit {background-color: #484848; color: #E0E0E0; border: 1px solid #E0E0E0;}
+            QMenuBar {background-color: #000000; color: #000000;}
+            QMenuBar::item:selected {background-color: #686868;}
+            QMenuBar::item:pressed {background-color: #484848;}
+            QMenu {background-color: #484848; color: #E0E0E0;}
+            QMenu::item:selected {background-color: #686868;}
         """
 
         self.setStyleSheet(style)
@@ -98,44 +137,88 @@ class YourApp(QMainWindow):
             self.thread.wait()
             self.thread = None
 
-        self.thread = SubprocessThread(command)
-        self.thread.input_data = input_data
+        self.thread = SubprocessThread(command, input_data)
         self.thread.finished.connect(self.handleSubprocessFinished)
         self.thread.start()
 
     def handleSubprocessFinished(self):
         # This slot is called when the subprocess thread finishes
         # You can update the UI or perform other tasks here
-        pass
-
-    def runEncoder(self):
-        self.runSubprocess([r'C:\DoginalsHashCanvasCreator\dist\Hidden_Encoder.exe'])
+        if self.thread.command[0].endswith("Hidden_Extractor.exe"):
+            # Decoder process finished, display the hidden message window
+            hidden_message = self.thread.output.strip()
+            if hidden_message:
+                self.hidden_message_window = HiddenMessageWindow(hidden_message)
+                self.hidden_message_window.show()
+            else:
+                QMessageBox.information(self, "Information", "No hidden message found in the image.")
+        else:
+            # Other subprocess finished, do nothing for now
+            pass
 
     def runDecoder(self):
-        file_name = self.inputFileName.text()  # Get the file name from the input field
-        if not file_name:
-            QMessageBox.warning(self, "Warning", "Please enter a file name.")
+        image_path, _ = QFileDialog.getOpenFileName(self, 'Open Image File', '', 'Image files (*.jpg *.png)')
+        self.inputImagePathDecoder.setText(image_path)
+
+        # Validate input
+        if not image_path:
+            QMessageBox.warning(self, "Warning", "Please select an image for decoder.")
             return
 
-        self.runSubprocess([r'C:\DoginalsHashCanvasCreator\dist\Hidden_Extractor.exe'], input_data=file_name)
+        # Run subprocess to decode the hidden message
+        self.runSubprocess([r'C:\DoginalsHashCanvasCreator\dist\Hidden_Extractor.exe'], input_data=image_path)
+
+    def runEncoder(self):
+        image_path = self.inputImagePathEncoder.text()  # Get the image path from the input field
+        if not image_path:
+            QMessageBox.warning(self, "Warning", "Please enter an image path for encoder.")
+            return
+
+        # Run subprocess to encode the hidden message
+        self.runSubprocess([r'C:\DoginalsHashCanvasCreator\dist\Hidden_Encoder.exe'], input_data=image_path)
 
     def runColorBlockGenerator(self):
+        # Your implementation for runColorBlockGenerator goes here
+        transaction_ids = self.inputTransactionIDsColorBlock.text()  
+        # Get transaction IDs
+        # Split the input transaction IDs and create a list of dictionaries
+        transaction_list = [{"TransactionID": id} for id in transaction_ids.split()]
+
+        # Save transaction IDs in JSON format
+        with open("transaction_ids_color_block.json", "w") as json_file:
+            json.dump(transaction_list, json_file, indent=4)
+
         self.runSubprocess([r'C:\DoginalsHashCanvasCreator\dist\auto_doginals_hash_canvas_creator.exe'])
 
     def runHashMapGenerator(self):
+        transaction_ids = self.inputTransactionIDsHashMap.text()  # Get transaction IDs from the input field
+        if not transaction_ids:
+            QMessageBox.warning(self, "Warning", "Please enter transaction IDs for Hash-map Generator.")
+            return
+
+        # Split the input transaction IDs and create a list of dictionaries
+        transaction_list = [{"TransactionID": id} for id in transaction_ids.split()]
+
+        # Save transaction IDs in JSON format
+        with open("transaction_ids_hash_map.json", "w") as json_file:
+            json.dump(transaction_list, json_file, indent=4)
+
         self.runSubprocess([r'C:\DoginalsHashCanvasCreator\dist\hash_map_generator.exe'])
 
     def runSuperCanvasGenerator(self):
+        transaction_ids = self.inputTransactionIDsSuperCanvas.text()  # Get transaction IDs from the input field
+        if not transaction_ids:
+            QMessageBox.warning(self, "Warning", "Please enter transaction IDs for Super Canvas Generator.")
+            return
+
+        # Split the input transaction IDs and create a list of dictionaries
+        transaction_list = [{"TransactionID": id} for id in transaction_ids.split()]
+
+        # Save transaction IDs in JSON format
+        with open("transaction_ids_super_canvas.json", "w") as json_file:
+            json.dump(transaction_list, json_file, indent=4)
+
         self.runSubprocess([r'C:\DoginalsHashCanvasCreator\dist\super_canvas_generator.exe'])
-
-    def saveImage(self):
-        save_path, _ = QFileDialog.getSaveFileName(self, "Save Image", "", "PNG Files (*.png);;All Files (*)")
-
-        if save_path:
-            # Specify the file to copy, not the directory
-            image_path = r"C:\DoginalsHashCanvasCreator\super-canvas_generated_images\generated_image_steg.png"
-            os.system(f'copy "{image_path}" "{save_path}"')
-            print(f"Image saved to {save_path}")
 
 if __name__ == "__main__":
     app = QApplication([])
