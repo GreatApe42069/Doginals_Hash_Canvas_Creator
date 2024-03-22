@@ -2,14 +2,10 @@
 
 -The Doginals Hash Canvas Creator is a set of Python scripts converted to simplified GUI that allows you with ease to create, encode, and decode images with hidden messages using the Least Significant Bit (LSB) method and steganography. These scripts are designed to generate unique and visually appealing hash-based images that are encoded with hidden data, derived from a cryptographic hash function (e.g., SHA-256) to generate a unique hash or binary representation of specific hash transaction id's which it gets from your provided inputs in (transaction_ids.json). The generated images are saved in the PNG format.
 
-***You can Independently run scripts or run executables, its your preference. The executables operate independently of Python. I did this so users without python can use it too***
+***You can Independently run scripts or run executables, its your preference. The executable operates independently of Python. I did this so users without python can use it too***
 
-***For the 3 Canvas Generators, you need to edit the HIDDEN MESSAGE, an the TX id from the json file to Encode the transaction ID and a message and hide them,***
+***For the 3 Canvas Generators, you need to edit the HIDDEN MESSAGE inside the (.py) script only, an edit the TX id from the json file only to Encode the transaction ID and a message and hide them***
 
-# encode_decode_craete.exe
-## Usage 
-
-Its recommended to create file directory `C:\DoginalsHashCanvasCreator` and run exe file fom this directory. This Gui requires no dependencies everythings packed in. Simply create directory, download `encode_decode_create.exe` and double click the file to Begin using the GUI. 
 
 # Hidden_Encoder.exe
 ## Usage
@@ -40,13 +36,13 @@ The script will decode the hidden message from the provided steganographed image
 ## Implementation
 The Hidden_Decoder.exe executable is generated from the Hidden_Decoder.py script. It relies on the stegano and Pillow libraries for decoding hidden messages. This executable is independent and doesn't require a separate Python environment.
 
-# DragAndDrop.exe
+# Super_Canvas_Creator.exe
 ## Usage
-DragAndDrop.exe simply Drag and drop a image to be decoded on the exe and watch it work.
+Double-click on Super_Canvas_Creator.exe or run it from the command line.
 
 The script will generate a unique and visually appealing image based on the transaction hashes provided in the transaction_ids.json file.
 
-The resulting Decoded messages will be saved in the Extracted_Hidden_Messages_Captured directory.
+The resulting steganographed images will be saved in the super-canvas_generated_images directory.
 
 ## Implementation
 The Super_Canvas_Creator.exe executable is derived from the Super_Canvas_Creator.py script. It utilizes the stegano, Pillow, and hashlib libraries to create visually diverse images based on transaction hashes. The executable operates independently of Python.
