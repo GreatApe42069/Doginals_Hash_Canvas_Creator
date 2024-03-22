@@ -18,7 +18,7 @@ The script will encode the hidden message in the provided image and save the ste
 
 ## Implementation
 
-The encode_decode_craete.exe is a combination of all scripts combined and simplified so everything is done within the GUI with ease. Its recommended to create file directory `C:\DoginalsHashCanvasCreator` and run exe file fom this directory. This Gui requires no dependencies everythings packed in. Simply create directory, download `encode_decode_create.exe` and double click the file to Begin using the GUI. 
+The encode_decode_craete.exe is a combination of all scripts combined and simplified so everything is done within the GUI with ease. Its recommended to create file directory `C:\DoginalsHashCanvasCreator` and run exe file fom this directory. This Gui requires no dependencies everythings packed in. Simply clone this repo to download `encode_decode_create.exe` and and all subfoldes fo environment, then double click the file to Begin using the GUI. 
 
 **Happy Encoding and Decoding Fam!**
 
