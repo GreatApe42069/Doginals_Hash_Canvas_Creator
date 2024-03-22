@@ -8,10 +8,10 @@
 
 - ***Enter file path and Hidden message inside the ((`encoded_messages.json`)) inside the Main folder not in dist folder , in the Main folder. Make sure to use double    \\  if you use  \  in file path input you will get, Error loading JSON file: Invalid \escape: line 3 column 26 (char 33)***
 
-# **encode_decode_craete.exe:**
+# **encode_decode_create.exe:**
 ## Usage
 
-The encode_decode_craete.exe is a combination of all scripts combined and simplified so everything is done within the GUI with ease. Its recommended to create file directory `C:\DoginalsHashCanvasCreator` and run exe file fom this directory. This Gui requires no dependencies everythings packed in. Simply clone this repo to download `encode_decode_create.exe` and and all subfoldes fo environment, then double click the file to Begin using the GUI. 
+The encode_decode_create.exe is a combination of all scripts combined and simplified so everything is done within the GUI with ease. Its recommended to create file directory `C:\DoginalsHashCanvasCreator` and run exe file fom this directory. This Gui requires no dependencies everythings packed in. Simply clone this repo to download `encode_decode_create.exe` and and all subfoldes fo environment, then double click the file to Begin using the GUI. 
 
 **Happy Encoding and Decoding Fam!**
 
