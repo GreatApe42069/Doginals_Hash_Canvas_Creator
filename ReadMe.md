@@ -4,7 +4,7 @@
 
 ***You can Independently run scripts or run executables, its your preference. The executable operates independently of Python. I did this so users without python can use it too***
 
-***For the 3 Canvas Generators, you need to edit the HIDDEN MESSAGE inside the (.py) script only, an edit the TX id from the json file only to Encode the transaction ID and a message and hide them***
+***For the 3 Canvas Generators, you need to edit the HIDDEN MESSAGE, an the TX id from the json file to Encode the transaction ID and a message and hide them,***
 
 
 # Hidden_Encoder.exe
