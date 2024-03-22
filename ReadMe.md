@@ -6,22 +6,23 @@
 
 ***For the 3 Canvas Generators, you need to edit the HIDDEN MESSAGE inside the (.py) script only, an edit the TX id from the json file only to Encode the transaction ID and a message and hide them***
 
+- ***Enter file path and Hidden message inside the ((`encoded_messages.json`)) inside the Main folder not in dist folder , in the Main folder. Make sure to use double    \\  if you use  \  in file path input you will get, Error loading JSON file: Invalid \escape: line 3 column 26 (char 33)***
+
+# **encode_decode_craete.exe:**
+## Usage
+
+The encode_decode_craete.exe is a combination of all scripts combined and simplified so everything is done within the GUI with ease. Its recommended to create file directory `C:\DoginalsHashCanvasCreator` and run exe file fom this directory. This Gui requires no dependencies everythings packed in. Simply clone this repo to download `encode_decode_create.exe` and and all subfoldes fo environment, then double click the file to Begin using the GUI. 
+
+**Happy Encoding and Decoding Fam!**
 
 # Hidden_Encoder.exe
 ## Usage
-
-- ***Enter file path and Hidden message inside the ((`encoded_messages.json`)) inside the Main folder not in dist folder , in the Main folder. Make sure to use double    \\  if you use  \  in file path input you will get, Error loading JSON file: Invalid \escape: line 3 column 26 (char 33)***
 
 - Hidden_Encoder.exe should be run from the command line, in command prompt, If you use for Building App its perfect but closes command prompt a little fast when viewing the hidden message, so opening command prompt and manually using this script and exe works best if you want hidden messaed displayed for a prolonged period.
 
 The script will encode the hidden message in the provided image and save the steganographed image in the encoded_images directory. **Note: when using executables files save in dist folders under same folder name e.g. `generated_images`, `hash-map_generated_images`, etc
 
 ## Implementation
-
-The encode_decode_craete.exe is a combination of all scripts combined and simplified so everything is done within the GUI with ease. Its recommended to create file directory `C:\DoginalsHashCanvasCreator` and run exe file fom this directory. This Gui requires no dependencies everythings packed in. Simply clone this repo to download `encode_decode_create.exe` and and all subfoldes fo environment, then double click the file to Begin using the GUI. 
-
-**Happy Encoding and Decoding Fam!**
-
 
 The Hidden_Encoder.exe executable is created from the Hidden_Encoder.py script. It utilizes the stegano and Pillow libraries to encode hidden messages in images. Ensure that Python is not required, as the executable is standalone.
 
