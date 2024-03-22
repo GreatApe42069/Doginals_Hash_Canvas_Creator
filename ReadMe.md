@@ -1,14 +1,11 @@
 # Doginals Hash Canvas Creator
 
--The Doginals Hash Canvas Creator is a set of Python scripts that allow you to create, encode, and decode images with hidden messages using the Least Significant Bit (LSB) method and steganography. These scripts are designed to generate unique and visually appealing hash-based images that are encoded with hidden data, derived from a cryptographic hash function (e.g., SHA-256) to generate a unique hash or binary representation of specific hash transaction id's which it gets from your provided inputs in (transaction_ids.json). The generated images are saved in the PNG format.
+-The Doginals Hash Canvas Creator is a set of Python scripts converted to simplified GUI that allows you with ease to create, encode, and decode images with hidden messages using the Least Significant Bit (LSB) method and steganography. These scripts are designed to generate unique and visually appealing hash-based images that are encoded with hidden data, derived from a cryptographic hash function (e.g., SHA-256) to generate a unique hash or binary representation of specific hash transaction id's which it gets from your provided inputs in (transaction_ids.json). The generated images are saved in the PNG format.
 
 ***You can Independently run scripts or run executables, its your preference. The executable operates independently of Python. I did this so users without python can use it too***
 
 ***For the 3 Canvas Generators, you need to edit the HIDDEN MESSAGE inside the (.py) script only, an edit the TX id from the json file only to Encode the transaction ID and a message and hide them***
 
-*Example:
-    encoded_message = f"{transaction_id}|||Your Hidden Message Goes Here WE ARE THE NODE RUNNERS You Cant Bootleg Our Shit!!!"
-    steg_image = lsb.hide(image, encoded_message)*
 
 # Hidden_Encoder.exe
 ## Usage
@@ -20,6 +17,12 @@
 The script will encode the hidden message in the provided image and save the steganographed image in the encoded_images directory. **Note: when using executables files save in dist folders under same folder name e.g. `generated_images`, `hash-map_generated_images`, etc
 
 ## Implementation
+
+The encode_decode_craete.exe is a combination of all scripts combined and simplified so everything is done within the GUI with ease. Its recommended to create file directory `C:\DoginalsHashCanvasCreator` and run exe file fom this directory. This Gui requires no dependencies everythings packed in. Simply create directory, download `encode_decode_create.exe` and double click the file to Begin using the GUI. 
+
+**Happy Encoding and Decoding Fam!**
+
+
 The Hidden_Encoder.exe executable is created from the Hidden_Encoder.py script. It utilizes the stegano and Pillow libraries to encode hidden messages in images. Ensure that Python is not required, as the executable is standalone.
 
 # Hidden_Decoder.exe
