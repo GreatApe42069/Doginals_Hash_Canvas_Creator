@@ -177,7 +177,22 @@ C:\DoginalsHashCanvasCreator\hash-map_generated_images\hashmap00006.png
 
 C:\DoginalsHashCanvasCreator\super-canvas_generated_images\ape-neon-cutout.png_encoded.png
 
+# Contributing
+
+If you'd like to contribute or donate to our projects, please donate in Dogecoin. For contributors its as easy as opening issues, and creating pull requests
+
+
+***If You would like to support with Donations, Send all Dogecoin tothe following Contributors:***
+
+**"handle": "Great Ape"**
+
+**"at": "@Greatape42069E"**
+
+**"dogecoin_address": "DBpLvNcR1Zj8B6dKJp4n3XEAT4FmRxbnJb"**
+
+
+
 
 *For any issues or further assistance, feel free to open an issue on the repository.*
 
-# Happy hashing with The Node Runners Hash Canvas Creator!
+# Happy Hashing, Đecoding, and Encoding with The Node Runners Hash Canvas Creator!
